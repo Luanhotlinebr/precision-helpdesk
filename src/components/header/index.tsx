@@ -12,7 +12,16 @@ export const Header=()=>{
         <h1 className="font-bold text-2xl pl-1 hover:tracking-wide duration-300">
           <span className="text-blue-500">Precision Helpdesk</span>
         </h1>
+        
         </Link>
+
+
+        <div className="flex items-baseline gap-4">        
+        <button><Link href="/dashboard" className="text-blue-500">Dashboard</Link ></button>
+        <button><Link href="/tickets" className="text-blue-500">Tickets</Link ></button>
+        <button><Link href="/clients" className="text-blue-500">Clients</Link ></button>
+        <button><Link href="/auditory" className="text-blue-500">Auditory</Link ></button>
+      </div>
 
       <div className="flex items-baseline gap-4">        
         <button>       
