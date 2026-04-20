@@ -6,6 +6,37 @@ datasource db {
   provider = "mongodb"
 }
 
+model Customer {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  phone String
+  email String
+  adress String?
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  //Relacao 1:N
+  tickets Ticket[]
+
+  userId String? @db.ObjectId
+  User User? @relation(fields:[userId],references:[id]) 
+}
+
+model Ticket {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  description  String
+  status   String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  //Relacao
+  customerId String? @db.ObjectId
+  customer Customer? @relation(fields:[customerId],references:[id])
+  userId String? @db.ObjectId
+  User User? @relation(fields:[userId],references:[id]) 
+}
+
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
@@ -49,6 +80,10 @@ model User {
   sessions      Session[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  //Relacao 1:N
+  tickets Ticket[]
+  customers Customer[]
 }
  
 model VerificationToken {
