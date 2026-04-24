@@ -41,10 +41,10 @@ export function Header(){
         )}
         {status === "authenticated" &&(
           <div className="flex  gap-4 items-center">        
-          <button><Link href="/dashboard" className="text-blue-500">Dashboard</Link ></button>
-          <button><Link href="/tickets" className="text-blue-500">Tickets</Link ></button>
-          <button><Link href="/clients" className="text-blue-500">Clients</Link ></button>
-          <button><Link href="/auditory" className="text-blue-500">Auditory</Link ></button>
+          <button><Link href="/dashboard" className="text-blue-500  font-medium hover:text-blue-700">Dashboard</Link ></button>
+          <button><Link href="/tickets" className="text-blue-500  font-medium hover:text-blue-700">Tickets</Link ></button>
+          <button><Link href="/clients" className="text-blue-500  font-medium hover:text-blue-700">Clients</Link ></button>
+          <button><Link href="/auditory" className="text-blue-500  font-medium hover:text-blue-700">Auditory</Link ></button>
           <button  onClick={handleLogout} className="cursor-pointer"><LogOut  size={26}/></button>
           </div>
         )}
