@@ -1,10 +1,22 @@
-import Link from "next/link"
+"use client";
 
-//Icones
-import { User } from "@deemlol/next-icons";
+import Link from "next/link";
+import {signIn,signOut,useSession} from 'next-auth/react';
 import { LogOut } from "@deemlol/next-icons";
+import { Loader } from "@deemlol/next-icons"
+import { Lock } from "@deemlol/next-icons"
 
-export const Header=()=>{
+export function Header(){
+ const { status,data } = useSession();
+
+ async function handleLogin(){
+   await signIn();
+ }
+
+  async function handleLogout(){
+    await signOut();
+  }
+
   return(
     <header className="w-full flex items-center px-2 py-4 bg-white h-20 shadow-sm">
       <div className="w-full flex items-center justify-between max-w-7xl mx-auto">
@@ -15,20 +27,27 @@ export const Header=()=>{
         
         </Link>
 
+        {status === "loading" &&(
+          <button  className="animate-spin">
+            <Loader size={26}/>
+          </button>
+        )}
 
-        <div className="flex items-baseline gap-4">        
-        <button><Link href="/dashboard" className="text-blue-500">Dashboard</Link ></button>
-        <button><Link href="/tickets" className="text-blue-500">Tickets</Link ></button>
-        <button><Link href="/clients" className="text-blue-500">Clients</Link ></button>
-        <button><Link href="/auditory" className="text-blue-500">Auditory</Link ></button>
-      </div>
-
-      <div className="flex items-baseline gap-4">        
-        <button>       
-          <Link href="/dashboard"><User  size={26}
-          /></Link ></button>
-        <button><Link href="/logout"><LogOut size={26}
-        /></Link></button></div>
+        {status === "unauthenticated" &&(
+          <button onClick={handleLogin} 
+          className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 duration-200 cursor-pointer">
+            <Lock size={20} /> Entrar com o Google
+          </button>
+        )}
+        {status === "authenticated" &&(
+          <div className="flex  gap-4 items-center">        
+          <button><Link href="/dashboard" className="text-blue-500">Dashboard</Link ></button>
+          <button><Link href="/tickets" className="text-blue-500">Tickets</Link ></button>
+          <button><Link href="/clients" className="text-blue-500">Clients</Link ></button>
+          <button><Link href="/auditory" className="text-blue-500">Auditory</Link ></button>
+          <button  onClick={handleLogout} className="cursor-pointer"><LogOut  size={26}/></button>
+          </div>
+        )}
       </div>
     </header>
   )
