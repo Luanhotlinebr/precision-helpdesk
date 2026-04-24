@@ -5,6 +5,7 @@ import {signIn,signOut,useSession} from 'next-auth/react';
 import { LogOut } from "@deemlol/next-icons";
 import { Loader } from "@deemlol/next-icons"
 import { Lock } from "@deemlol/next-icons"
+import { User } from "@deemlol/next-icons"
 
 export function Header(){
  const { status,data } = useSession();
@@ -40,12 +41,10 @@ export function Header(){
           </button>
         )}
         {status === "authenticated" &&(
-          <div className="flex  gap-4 items-center">        
-          <button><Link href="/dashboard" className="text-blue-500  font-medium hover:text-blue-700">Dashboard</Link ></button>
-          <button><Link href="/tickets" className="text-blue-500  font-medium hover:text-blue-700">Tickets</Link ></button>
-          <button><Link href="/clients" className="text-blue-500  font-medium hover:text-blue-700">Clients</Link ></button>
-          <button><Link href="/auditory" className="text-blue-500  font-medium hover:text-blue-700">Auditory</Link ></button>
-          <button  onClick={handleLogout} className="cursor-pointer"><LogOut  size={26}/></button>
+          <div className="flex items-center gap-3">
+            <button className="cursor-pointer"><Link href="/dashboard"><User  size={26}/></Link></button>
+            <button  onClick={handleLogout} className="cursor-pointer"><LogOut  size={26}/></button>
+
           </div>
         )}
       </div>
