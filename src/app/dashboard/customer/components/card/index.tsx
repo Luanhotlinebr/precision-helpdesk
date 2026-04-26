@@ -2,7 +2,7 @@ import { Mail } from "@deemlol/next-icons"
 import { Phone } from "@deemlol/next-icons"
 export function CardCustomer(){
   return(
-    <article className="flex flex-col border-2 bg-gray-100 p-3 rounded-lg hover:scale-101 duration-200 gap-2">
+    <article className="flex flex-col shadow-md border-l-2 border-l-blue-400 bg-gray-100 p-3 rounded-lg hover:scale-101 duration-200 gap-2">
       <h2>
         <a className="font-bold">Nome:</a> Bruna Rafaela
       </h2>
