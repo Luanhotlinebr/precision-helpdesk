@@ -3,13 +3,14 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { ArrowLeft } from "@deemlol/next-icons";
 import { NewCustomerForm } from "../components/form";
 
-export default async function NewCustomer(){
-      const session = await getServerSession(authOptions);
-      console.log(session);
-    
-  if(!session || !session.user){
+export default async function NewCustomer() {
+  const session = await getServerSession(authOptions);
+  console.log(session);
+
+  if (!session || !session.user) {
     redirect("/");
   }
 
@@ -17,12 +18,17 @@ export default async function NewCustomer(){
     <Container>
       <main className="flex flex-col mt-2 mb-2">
         <div className="flex items-center gap-2">
-          <Link href="/dashboard/customer" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 duration-200 align-middle">Voltar</Link>
+          <Link
+            href="/dashboard/customer"
+            className="text-blue-500 font-medium px-4 py-2 rounded-lg  duration-200 align-middle flex gap-1 hover:text-blue-600"
+          >
+            <ArrowLeft />
+            Voltar para lista de clientes
+          </Link>
           <h1 className="text-3xl font-bold self-start">Novo cliente</h1>
         </div>
-          <NewCustomerForm/>
-
+        <NewCustomerForm />
       </main>
     </Container>
-  )
+  );
 }
